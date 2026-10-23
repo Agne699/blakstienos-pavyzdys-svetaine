@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="lt">
+<head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>rim.trė studio. Blakstienų priauginimas Kaune</title>
+<meta name="description" content="Blakstienų priauginimas ir korekcija Kaune. Kainos, darbai ir registracija vienoje vietoje. Demonstracinė svetainė.">
+<link rel="canonical" href="https://pavyzdys.lt/">
+<meta property="og:title" content="rim.trė studio. Blakstienų priauginimas Kaune">
+<meta property="og:description" content="Blakstienų priauginimas ir korekcija Kaune. Kainos, darbai ir registracija vienoje vietoje. Demonstracinė svetainė.">
+<meta property="og:image" content="https://pavyzdys.lt/og.jpg">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="lt_LT">
+<link rel="icon" href="og.jpg">
+<style>
+:root{
+  --fonas:#FBF7F2; --ramus:#F3EBE2; --tekstas:#2B2522;
+  --silpnas:#6B5E55; --akcentas:#8C5A3C;
+  --ant-akcento:#FFFFFF; --linija:#E3D7CA;
+  --kampai:2px;
+  --srifto-antrastes:"Cormorant Garamond",Georgia,serif;
+  --srifto-tekstas:"Jost",system-ui,sans-serif;
+  --srifto-pusjuodis:"Jost Pusjuodis","Jost",system-ui,sans-serif;
+  --antrastes-svoris:600;
+}
+@font-face{font-family:"Cormorant Garamond";src:url("sriftai/CormorantGaramond-600.woff2") format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:"Jost";src:url("sriftai/Jost-400.woff2") format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Jost Pusjuodis";src:url("sriftai/Jost-500.woff2") format("woff2");font-weight:600;font-display:swap}
+/* Bendras stilius visiems šablonams.
+   Spalvos ir šriftai atkeliauja iš klientas.json per :root kintamuosius,
+   todėl šis failas yra neutralus ir vienodas visiems klientams. */
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--fonas); color: var(--tekstas);
+  font-family: var(--srifto-tekstas); font-size: 17px; line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+img, video { max-width: 100%; height: auto; display: block; }
+a { color: inherit; }
+
+h1, h2, h3, .antrast {
+  font-family: var(--srifto-antrastes); font-weight: var(--antrastes-svoris, 600);
+  line-height: 1.12; letter-spacing: -0.01em; margin: 0 0 .5em;
+  text-wrap: balance;
+}
+h1 { font-size: clamp(2.1rem, 6.5vw, 4rem); }
+h2 { font-size: clamp(1.6rem, 4vw, 2.5rem); }
+h3 { font-size: clamp(1.15rem, 2.4vw, 1.4rem); }
+p { margin: 0 0 1.1em; max-width: 68ch; }
+.silpnas { color: var(--silpnas); }
+strong, b { font-family: var(--srifto-pusjuodis); font-weight: 600; }
+
+/* ---------- karkasas ---------- */
+.vidus { width: min(1120px, 100% - 2.5rem); margin-inline: auto; }
+.vidus-siauras { width: min(720px, 100% - 2.5rem); margin-inline: auto; }
+section { padding: clamp(3.5rem, 9vw, 7rem) 0; }
+section + section { border-top: 1px solid var(--linija); }
+.ramus { background: var(--ramus); }
+
+/* ---------- mygtukai ---------- */
+.mygtukas, .mygtukas-ramus {
+  display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+  font-family: var(--srifto-pusjuodis); font-weight: 600; font-size: 1.02rem;
+  padding: .95rem 1.7rem; border-radius: var(--kampai, 4px);
+  text-decoration: none; border: 1.5px solid var(--akcentas);
+  transition: transform .15s ease, opacity .15s ease;
+  min-height: 48px; cursor: pointer;
+}
+.mygtukas { background: var(--akcentas); color: var(--ant-akcento); }
+.mygtukas-ramus { background: transparent; color: var(--akcentas); }
+.mygtukas:hover, .mygtukas-ramus:hover { transform: translateY(-2px); }
+.mygtukai { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 1.8rem; }
+
+/* ---------- pirmas ekranas ---------- */
+.hero { padding-top: clamp(2.5rem, 7vw, 5rem); }
+.hero-tinklelis { display: grid; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+@media (min-width: 860px) { .hero-tinklelis { grid-template-columns: 1.05fr .95fr; } }
+.hero-foto img { width: 100%; border-radius: var(--kampai, 4px); object-fit: cover; aspect-ratio: 4/5; }
+.virsraste {
+  font-family: var(--srifto-pusjuodis); font-size: .82rem; font-weight: 600;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--akcentas);
+  margin-bottom: 1rem;
+}
+.ivadas { font-size: clamp(1.05rem, 2.2vw, 1.22rem); color: var(--silpnas); max-width: 54ch; }
+
+/* ---------- tinkleliai ---------- */
+.tinklelis { display: grid; gap: 1.5rem; grid-template-columns: 1fr; }
+@media (min-width: 620px) { .tinklelis-2, .tinklelis-3 { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 940px) { .tinklelis-3 { grid-template-columns: repeat(3, 1fr); } }
+.kortele {
+  background: var(--fonas); border: 1px solid var(--linija);
+  border-radius: var(--kampai, 4px); padding: 1.6rem; display: flex;
+  flex-direction: column; gap: .4rem;
+}
+.ramus .kortele { background: var(--fonas); }
+.kortele img { border-radius: calc(var(--kampai, 4px) - 1px); margin: -1.6rem -1.6rem 1.1rem; width: calc(100% + 3.2rem); max-width: none; aspect-ratio: 4/3; object-fit: cover; }
+.kortele h3 { margin-bottom: .2rem; }
+.kaina { font-family: var(--srifto-pusjuodis); font-weight: 600; color: var(--akcentas); font-size: 1.1rem; }
+
+/* ---------- prieš ir po ---------- */
+.pries-po { display: grid; grid-template-columns: 1fr 1fr; gap: .4rem; }
+.pries-po figure { margin: 0; }
+.pries-po img { aspect-ratio: 3/4; object-fit: cover; border-radius: var(--kampai, 4px); }
+.pries-po figcaption { font-size: .8rem; color: var(--silpnas); margin-top: .35rem; text-align: center; }
+
+/* ---------- lentelė ---------- */
+.lentele-rezis { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; min-width: 420px; }
+th, td { text-align: left; padding: .95rem .8rem; border-bottom: 1px solid var(--linija); }
+th { font-family: var(--srifto-pusjuodis); font-weight: 600; font-size: .9rem;
+     text-transform: uppercase; letter-spacing: .06em; color: var(--silpnas); }
+td:last-child, th:last-child { text-align: right; white-space: nowrap; }
+
+/* ---------- žingsniai ---------- */
+.zingsniai { counter-reset: z; display: grid; gap: 1.6rem; }
+@media (min-width: 760px) { .zingsniai { grid-template-columns: repeat(3, 1fr); } }
+.zingsnis { counter-increment: z; }
+.zingsnis::before {
+  content: counter(z); display: flex; align-items: center; justify-content: center;
+  width: 2.4rem; height: 2.4rem; border-radius: 50%;
+  background: var(--akcentas); color: var(--ant-akcento);
+  font-family: var(--srifto-pusjuodis); font-weight: 600; margin-bottom: .9rem;
+}
+
+/* ---------- DUK ---------- */
+details {
+  border-bottom: 1px solid var(--linija); padding: 1.1rem 0;
+}
+summary {
+  font-family: var(--srifto-pusjuodis); font-weight: 600; cursor: pointer;
+  list-style: none; display: flex; justify-content: space-between; gap: 1rem;
+}
+summary::-webkit-details-marker { display: none; }
+summary::after { content: "+"; color: var(--akcentas); font-size: 1.3rem; line-height: 1; }
+details[open] summary::after { content: "–"; }
+details p { margin: .9rem 0 0; color: var(--silpnas); }
+
+/* ---------- forma ---------- */
+form { display: grid; gap: 1rem; max-width: 520px; }
+label { font-family: var(--srifto-pusjuodis); font-weight: 600; font-size: .92rem; display: grid; gap: .4rem; }
+input, textarea, select {
+  font: inherit; color: inherit; background: var(--fonas);
+  border: 1.5px solid var(--linija); border-radius: var(--kampai, 4px);
+  padding: .8rem .9rem; width: 100%; min-height: 48px;
+}
+input:focus, textarea:focus, select:focus { outline: 2px solid var(--akcentas); outline-offset: 1px; border-color: var(--akcentas); }
+textarea { min-height: 120px; resize: vertical; }
+.formos-eilute { font-size: .85rem; color: var(--silpnas); max-width: 520px; }
+
+/* ---------- kontaktai ---------- */
+.kontaktai { display: grid; gap: 1.4rem; }
+@media (min-width: 760px) { .kontaktai { grid-template-columns: 1fr 1fr; gap: 3rem; } }
+.kontaktai dl { margin: 0; display: grid; gap: .9rem; }
+.kontaktai dt { font-family: var(--srifto-pusjuodis); font-weight: 600; font-size: .82rem;
+                text-transform: uppercase; letter-spacing: .08em; color: var(--silpnas); }
+.kontaktai dd { margin: .15rem 0 0; font-size: 1.08rem; }
+.kontaktai a { text-decoration-color: var(--akcentas); text-underline-offset: 3px; }
+
+/* ---------- meniu ir poraštė ---------- */
+.meniu {
+  position: sticky; top: 0; z-index: 10; background: var(--fonas);
+  border-bottom: 1px solid var(--linija);
+}
+.meniu-vidus { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .9rem 0; }
+.zenklas { font-family: var(--srifto-antrastes); font-size: 1.22rem; font-weight: 600; text-decoration: none; }
+.meniu nav { display: flex; gap: 1.3rem; flex-wrap: wrap; font-size: .95rem; }
+.meniu nav a { text-decoration: none; }
+.meniu nav a:hover { text-decoration: underline; text-underline-offset: 4px; }
+@media (max-width: 620px) { .meniu nav { display: none; } }
+
+footer { padding: 3rem 0; border-top: 1px solid var(--linija); font-size: .9rem; color: var(--silpnas); }
+footer .vidus { display: grid; gap: 1rem; }
+@media (min-width: 760px) { footer .vidus { grid-template-columns: 1fr auto; align-items: end; } }
+
+/* ---------- juosta ---------- */
+.juosta { background: var(--akcentas); color: var(--ant-akcento); text-align: center; }
+.juosta h2, .juosta p { color: inherit; margin-inline: auto; }
+.juosta .mygtukas { background: var(--ant-akcento); color: var(--akcentas); border-color: var(--ant-akcento); }
+.juosta .mygtukai { justify-content: center; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
+
+/* ---------- video juosta ---------- */
+.video-juosta { padding: 0; border: 0; }
+.video-juosta video {
+  width: 100%; height: clamp(280px, 56vh, 620px);
+  object-fit: cover; display: block; background: var(--ramus);
+}
+.video-tekstas { padding: clamp(2rem, 5vw, 3.5rem) 0 0; }
+
+/* Darbų tinklelis telefone: du stulpeliai, kitaip puslapis per ilgas */
+@media (max-width: 619px) {
+  #darbai .tinklelis-3 { grid-template-columns: 1fr 1fr; gap: .7rem; }
+}
+
+/* Lentelė telefone: virsta eilutėmis.
+   Kitaip paskutinis stulpelis (dažniausiai KAINA) lieka už ekrano krašto,
+   o horizontaliai niekas neslenka. */
+@media (max-width: 619px) {
+  table { min-width: 0; }
+  thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  tbody tr {
+    display: grid; grid-template-columns: 1fr auto; align-items: baseline;
+    gap: .15rem 1rem; padding: .85rem 0; border-bottom: 1px solid var(--linija);
+  }
+  tbody td { border: 0; padding: 0; }
+  tbody td:first-child { font-family: var(--srifto-pusjuodis); font-weight: 600; }
+  tbody td:last-child { text-align: right; }
+  tbody td:nth-child(2):not(:last-child) {
+    grid-column: 1 / -1; order: 3; font-size: .88rem; color: var(--silpnas);
+  }
+  tbody th { border: 0; padding: 0; }
+}
+
+/* ---------- laisvi laikai ---------- */
+.laikai { display: grid; gap: .9rem; }
+.diena {
+  display: grid; grid-template-columns: 1fr; gap: .5rem;
+  padding: 1rem 0; border-bottom: 1px solid var(--linija);
+}
+@media (min-width: 640px) {
+  .diena { grid-template-columns: 11rem 1fr; align-items: center; gap: 1.2rem; }
+  .diena-data { grid-row: 2; grid-column: 1; margin-top: -.4rem; }
+  .laiku-eile { grid-column: 2; grid-row: 1 / span 2; }
+}
+.diena-vardas { font-family: var(--srifto-pusjuodis); font-weight: 600; }
+.diena-data { font-size: .88rem; }
+.laiku-eile { display: flex; flex-wrap: wrap; gap: .5rem; }
+.laikas {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 4.6rem; min-height: 44px; padding: .5rem .9rem;
+  border: 1.5px solid var(--akcentas); border-radius: var(--kampai, 4px);
+  color: var(--akcentas); text-decoration: none;
+  font-family: var(--srifto-pusjuodis); font-weight: 600; font-size: .98rem;
+  transition: background .15s ease, color .15s ease;
+}
+.laikas:hover { background: var(--akcentas); color: var(--ant-akcento); }
+
+/* ---------- mėnesio kalendorius ---------- */
+.kal { margin-top: 1.5rem; }
+.kal-virsus { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1rem; }
+.kal-menuo { font-family: var(--srifto-antrastes); font-size: 1.3rem; text-transform: capitalize; }
+.kal-rodykle {
+  width: 44px; height: 44px; border-radius: var(--kampai, 4px);
+  border: 1.5px solid var(--linija); background: var(--fonas); color: var(--tekstas);
+  font-size: 1.4rem; line-height: 1; cursor: pointer;
+}
+.kal-rodykle:hover { border-color: var(--akcentas); color: var(--akcentas); }
+.kal-savaite, .kal-tinklelis { display: grid; grid-template-columns: repeat(7, 1fr); gap: .35rem; }
+.kal-savaite { margin-bottom: .4rem; }
+.kal-savaite span {
+  text-align: center; font-size: .78rem; letter-spacing: .06em; text-transform: uppercase;
+  color: var(--silpnas); font-family: var(--srifto-pusjuodis); font-weight: 600;
+}
+.kal-diena {
+  aspect-ratio: 1; display: flex; align-items: center; justify-content: center;
+  border-radius: var(--kampai, 4px); border: 1.5px solid transparent;
+  background: transparent; color: var(--silpnas); font: inherit; font-size: .95rem;
+}
+.kal-diena.praeitis { opacity: .35; }
+button.kal-diena.laisva {
+  background: var(--laisva-fonas, #E8F3EC); color: var(--laisva-tekstas, #1F5F3F);
+  border-color: var(--laisva-krastas, #BBDCC8);
+  font-family: var(--srifto-pusjuodis); font-weight: 600; cursor: pointer;
+}
+button.kal-diena.laisva:hover { background: var(--laisva-krastas, #BBDCC8); }
+button.kal-diena.pasirinkta {
+  background: var(--laisva-tekstas, #1F5F3F); color: #fff;
+  border-color: var(--laisva-tekstas, #1F5F3F);
+}
+.kal-laikai { margin-top: 1.4rem; padding-top: 1.2rem; border-top: 1px solid var(--linija); }
+.kal-laikai-antraste {
+  font-family: var(--srifto-pusjuodis); font-weight: 600; margin-bottom: .8rem;
+}
+.kal-zyme { display: flex; align-items: center; gap: .5rem; margin-top: 1.2rem; font-size: .85rem; }
+.kal-taskas {
+  width: 1rem; height: 1rem; border-radius: 3px;
+  background: var(--laisva-fonas, #E8F3EC); border: 1.5px solid var(--laisva-krastas, #BBDCC8);
+  display: inline-block;
+}
+
+</style>
+</head>
+<body>
+<header class="meniu">
+  <div class="vidus meniu-vidus">
+    <a class="zenklas" href="#pradzia">rim.trė studio</a>
+    <nav>
+        <a href="#darbai">Darbai</a>
+      
+
+     <a href="#kainos">Kainos</a>
+      <a href="#kaip">Kaip vyksta</a>
+      <a href="#kontaktai">Kontaktai</a>
+    </nav>
+    <a class="mygtukas" href="tel:+37062113100">+370 621 13100</a>
+  </div>
+</header>
+
+<main id="pradzia">
+  <section class="hero">
+    <div class="vidus">
+      <div class="hero-tinklelis">
+        <div>
+          <p class="virsraste">Blakstienos · Kaunas</p>
+          <h1>Keliesi ir jau esi pasiruošusi</h1>
+          <p class="ivadas">Priauginus blakstienas kiekvieną rytą sutaupysi laiko ir visą laiką jausiesi nuostabiai. Dirbu labai kruopščiai ir pabrėžiu tavo grožį.</p>
+          <div class="mygtukai">
+            <a class="mygtukas" href="#kontaktai">Registruotis</a>
+            <a class="mygtukas-ramus" href="tel:+37062113100">Skambinti</a>
+          </div>
+        </div>
+        <div class="hero-foto"><img src="foto/29-pexels-shahin-mren-92379627-34460006.jpg" alt="Akis su priaugintomis blakstienomis" style="object-position:center 30%"></div>
+      </div>
+    </div>
+  </section>
+
+  
+  <section class="ramus">
+    <div class="vidus">
+      <div class="tinklelis tinklelis-3">
+        <div class="kortele"><h3>Ne tik blakstienos</h3><p class="silpnas">Kiekviena klientė gauna ne tik blakstienų priauginimą, bet ir poilsio akimirkų mano kabinete.</p></div><div class="kortele"><h3>Parinksiu, kas tinka tau</h3><p class="silpnas">Visada parinksiu tai, kas individualiai tinka kiekvienai.</p></div><div class="kortele"><h3>Jei tai pirmas kartas</h3><p class="silpnas">Nebijok, viską paaiškinsiu nuo pradžių, kad būtų aišku.</p></div>
+      </div>
+    </div>
+  </section>
+  
+
+  
+
+  <section class="video-juosta">
+    <video src="video/img-1328.mp4" poster="video/img-1328-plakatas.jpg" style="object-position:center 25%" autoplay muted loop playsinline
+           aria-label="Salono vaizdas"></video>
+    
+    <div class="vidus-siauras video-tekstas">
+      <h2>Kaip atrodo vieta, į kurią ateini</h2>
+      <p class="silpnas">Poilsis garantuotas procedūros metu.</p>
+    </div>
+    
+  </section>
+  
+
+  <section id="darbai">
+    <div class="vidus">
+      <h2>Darbai</h2>
+      <p class="silpnas">Nuotraukos iš darbo dienos. Be apdorojimo.</p>
+      
+      
+      <div class="tinklelis tinklelis-3">
+        <figure style="margin:0"><img src="foto/02-img-0070.jpg" alt="Blakstienos iš viršaus" style="aspect-ratio:3/4;object-fit:cover;object-position:center;border-radius:var(--kampai)"></figure><figure style="margin:0"><img src="foto/14-img-8203.jpg" alt="Blakstienos iš labai arti" style="aspect-ratio:3/4;object-fit:cover;object-position:center;border-radius:var(--kampai)"></figure><figure style="margin:0"><img src="foto/15-kliente-akis.jpg" alt="Akis iš arti" style="aspect-ratio:3/4;object-fit:cover;object-position:center;border-radius:var(--kampai)"></figure><figure style="margin:0"><img src="foto/18-melyna-akis.jpg" alt="Blakstienos iš arti" style="aspect-ratio:3/4;object-fit:cover;object-position:center;border-radius:var(--kampai)"></figure><figure style="margin:0"><img src="foto/32-ramus-vokas.jpg" alt="Ramus vokas po procedūros" style="aspect-ratio:3/4;object-fit:cover;object-position:center;border-radius:var(--kampai)"></figure><figure style="margin:0"><img src="foto/33-vokas-pries.jpg" alt="Priauginimas iš šono" style="aspect-ratio:3/4;object-fit:cover;object-position:center;border-radius:var(--kampai)"></figure>
+      </div>
+      
+    </div>
+  </section>
+  
+
+  
+  
+
+  <section id="kainos" class="ramus">
+    <div class="vidus-siauras">
+      <h2>Kainos ir trukmė</h2>
+      <div class="lentele-rezis">
+        <table>
+          <thead><tr><th>Paslauga</th><th>Trukmė</th><th>Kaina</th></tr></thead>
+          <tbody>
+            <tr><td>Klasikinis priauginimas</td><td class="silpnas">2 val.</td><td class="kaina">30 €</td></tr><tr><td>2D efektas</td><td class="silpnas">2 val.</td><td class="kaina">35 €</td></tr><tr><td>3D ir tankesni</td><td class="silpnas">2 val.</td><td class="kaina">38 €</td></tr><tr><td>Korekcija iki 3 savaičių</td><td class="silpnas">1,5 val.</td><td class="kaina">30 €</td></tr><tr><td>Korekcija po 3 savaičių</td><td class="silpnas">1,5 val.</td><td class="kaina">35 €</td></tr><tr><td>Nuėmimas</td><td class="silpnas">30 min.</td><td class="kaina">15 €</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="silpnas" style="margin-top:1rem">Korekcijos kaina priklauso nuo to, kiek blakstienų liko. Tiksliai pasakau pamačiusi.</p>
+    </div>
+  </section>
+  
+
+  
+  <section id="kaip">
+    <div class="vidus">
+      <h2>Kaip vyksta</h2>
+      <div class="zingsniai">
+        <div class="zingsnis"><h3>Parašai</h3><p class="silpnas">Žinute arba per Instagramą. Atsakau tą pačią dieną, vakare.</p></div><div class="zingsnis"><h3>Susitariame</h3><p class="silpnas">Pasakau laisvus laikus. Prieš pirmą kartą paklausiu apie alergijas.</p></div><div class="zingsnis"><h3>Atvažiuoji</h3><p class="silpnas">Gulėsi apie dvi valandas. Galima užmigti, dauguma taip ir daro.</p></div>
+      </div>
+      
+      <div class="tinklelis tinklelis-2" style="margin-top:clamp(1.8rem,4vw,3rem)">
+        <figure style="margin:0"><img src="foto/03-img-1230.jpg" alt="Žvakė ir vaza studijoje" style="aspect-ratio:4/3;object-fit:cover;object-position:center;border-radius:var(--kampai)"></figure><figure style="margin:0"><img src="foto/04-img-1248.jpg" alt="Darbo įrankiai paruošti" style="aspect-ratio:4/3;object-fit:cover;object-position:center;border-radius:var(--kampai)"></figure>
+      </div>
+      
+    </div>
+  </section>
+  
+
+  
+
+  
+  <section>
+    <div class="vidus-siauras">
+      <h2>Dažniausi klausimai</h2>
+      <details><summary>Ar skauda?</summary><p>Ne. Blakstienos klijuojamos ant blakstienų, odos neliečiu. Dauguma užmiega.</p></details><details><summary>Ar sugadins savas?</summary><p>Jei priauginama tinkamo storio ir ilgio, savos lieka sveikos. Būtent todėl kartais pasakau, kad storesnių neverta.</p></details><details><summary>Kiek laiko laikosi?</summary><p>Apie tris ar keturias savaites. Priklauso nuo to, kaip auga tavo pačios blakstienos.</p></details><details><summary>Ar galima plauti veidą ir maudytis?</summary><p>Su LED priauginimu veidą galima šlapinti iškart po procedūros. Jokių ribojimų, tik netrinti akių.</p></details><details><summary>Ką daryti, jei nepatiks?</summary><p>Pasakyk tą pačią dieną. Pataisysiu nemokamai arba nuimsiu.</p></details>
+    </div>
+  </section>
+  
+
+  
+  <section class="juosta">
+    <div class="vidus-siauras">
+      <h2>Paskubėk užsiimti savo laiką</h2>
+      <p></p>
+      <div class="mygtukai"><a class="mygtukas" href="#kontaktai">Registruotis</a></div>
+    </div>
+  </section>
+  
+
+  <section id="kontaktai">
+    <div class="vidus">
+      <h2>Registracija</h2>
+      <div class="kontaktai">
+        <div>
+          <dl>
+            <div><dt>Telefonas</dt><dd><a href="tel:+37062113100">+370 621 13100</a></dd></div>
+            <div><dt>El. paštas</dt><dd><a href="mailto:agnevar426@gmail.com">agnevar426@gmail.com</a></dd></div>
+            <div><dt>Adresas</dt><dd>Kaunas</dd></div>
+            <div><dt>Darbo laikas</dt><dd>I–V 9–19 · VI 10–15</dd></div>
+            <div><dt>Instagram</dt><dd><a href="https://www.instagram.com/rim.tre_studio/">@rim.tre_studio</a></dd></div>
+          </dl>
+        </div>
+        <div><form action="https://formspree.io/f/mgaawdev" method="POST">
+  <label>Vardas
+    <input type="text" name="vardas" required autocomplete="name">
+  </label>
+  <label>Telefonas arba el. paštas
+    <input type="text" name="kontaktas" required>
+  </label>
+  <label>Kokios paslaugos norėtumėte ir kada jums patogu?
+    <textarea name="zinute" rows="4"></textarea>
+  </label>
+  <input type="hidden" name="_subject" value="Užklausa iš svetainės — rim.trė studio">
+  <button class="mygtukas" type="submit">Siųsti</button>
+</form>
+<p class="formos-eilute">Paspaudę „Siųsti" sutinkate, kad jūsų vardas ir kontaktai bus naudojami tik atsakymui į šią užklausą. Duomenų tretiesiems asmenims neperduodame.</p>
+</div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer>
+  <div class="vidus">
+    <div>
+      <div class="zenklas">rim.trė studio</div>
+      <p class="silpnas" style="margin:.4rem 0 0">Kaunas · <a href="tel:+37062113100">+370 621 13100</a></p>
+    </div>
+    <p class="silpnas" style="margin:0">© 2026 rim.trė studio</p>
+  </div>
+</footer>
+
+</body>
+</html>
